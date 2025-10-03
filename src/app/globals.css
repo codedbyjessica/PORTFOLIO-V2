@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --mainColorDark: #999999;
+  --mainColorLight: #f0f2f5;
+  --secondaryColorDark: #0068ad;
+  --secondaryColorLight: #80ccff;
+  --tertiaryColorDark: #2eb82e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+*:hover {
+transition: all 0.2s ease;
+}
+
+body{
+	font-family: 'Roboto', sans-serif;	
+	font-size: 12px;
+	@media (max-width: 780px) {
+		font-size: 14px;
+	}
+}
+
+h1, h2, h3{
+	text-transform: uppercase;
+}
+
+h1{
+	margin: 0;
+	font-size: 2.2rem;
+	letter-spacing: 1px;
+}
+
+h2{
+  @apply text-center border-b border-mainColorDark mb-8 pb-2 text-[1.2rem] tracking-wide w-full ;
+}
+
+h3{
+	font-size: 1rem;
+	font-weight: 500;
+	margin-bottom: 10px;
+	letter-spacing: 2px;
+	text-align: center;
+	width:100%;
+	position:absolute;
+	top: -10px;
+	span{
+		padding:0 15px;
+	}
+}
+
+h4{
+	font-size: 0.8rem;
+	font-weight: normal;
+	letter-spacing: 1px;
+}
+
+a{
+	text-decoration: none;
+	color: var(--secondaryColorDark);
+	&:hover{
+		color: var(--tertiaryColorDark);
+	}
+}
+
+a.button, #submit{
+	color: var(--secondaryColorDark);
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	text-decoration: none;
+	border: 1px solid var(--secondaryColorDark);
+	background-color:transparent;
+	padding:8px 16px;
+	&:hover{
+		color: #fff;
+		background-color: var(--tertiaryColorDark);
+		border: 1px solid var(--tertiaryColorDark);
+	}
+}
+
+section {
+  @apply py-16;
+  h3 span {
+    background-color: white;
+  }
+  &:nth-of-type(odd) {
+    @apply bg-mainColorLight;
+    h3 span {
+      background-color: var(--mainColorLight);
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
