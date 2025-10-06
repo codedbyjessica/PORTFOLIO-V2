@@ -3,6 +3,7 @@ import './globals.css'
 import Header from '@/components/Header'
 import HeaderUnder from '@/components/HeaderUnder'
 import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Jessica Zhang - Front-End Developer',
@@ -16,11 +17,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className="antialiased" id="top">
         <Nav />
         <Header />
         <HeaderUnder />
         {children}
+        <Footer />
       </body>
     </html>
   )

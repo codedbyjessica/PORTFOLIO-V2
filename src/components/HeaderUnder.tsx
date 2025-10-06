@@ -20,11 +20,11 @@ export default function HeaderUnder() {
         }
     ]
   return (
-    <article className="py-4">
+    <article className="py-4 relative z-10 bg-white">
         <Container> 
-            <div className="flex justify-between items-center uppercase leading-tight">
+            <div className="flex lg:justify-between justify-center items-center uppercase leading-tight tracking-wide">
                 {CONTENT.map((item, index) => (
-                    <div key={index}>
+                    <div key={index} className={`text-center lg:text-left ${index < 3 ? 'hidden lg:block' : 'block'}`}>
                         <p>{item.title}</p><p className="text-secondaryColorDark">{item.description}</p>
                     </div>
                 ))}

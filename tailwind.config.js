@@ -15,6 +15,7 @@ module.exports = {
         secondaryColorDark: "#0068ad",
         secondaryColorLight: "#80ccff",
         tertiaryColorDark: "#2eb82e",  
+        darkdarkgray: "#333",
       },
     },
   },

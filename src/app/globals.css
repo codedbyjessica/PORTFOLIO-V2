@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Italic-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -10,6 +26,7 @@
   --secondaryColorDark: #0068ad;
   --secondaryColorLight: #80ccff;
   --tertiaryColorDark: #2eb82e;
+  --darkdarkgray: #333;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,26 +40,27 @@
 transition: all 0.2s ease;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body{
 	font-family: 'Roboto', sans-serif;	
-	font-size: 12px;
-	@media (max-width: 780px) {
-		font-size: 14px;
-	}
+	font-size: 14px;
+	color: var(--darkdarkgray);
+	background-color: var(--darkdarkgray);
 }
 
 h1, h2, h3{
-	text-transform: uppercase;
-}
-
-h1{
-	margin: 0;
-	font-size: 2.2rem;
-	letter-spacing: 1px;
+	@apply tracking-wider uppercase;
 }
 
 h2{
-  @apply text-center border-b border-mainColorDark mb-8 pb-2 text-[1.2rem] tracking-wide w-full ;
+  @apply text-center border-b border-mainColorDark mb-10 pb-2 text-[1.2rem] w-full relative;
+  span {
+	@apply absolute left-1/2 -translate-x-1/2 -top-1.5 px-3;
+  }
+
 }
 
 h3{
@@ -73,9 +91,9 @@ a{
 	}
 }
 
-a.button, #submit{
+.button {
 	color: var(--secondaryColorDark);
-	font-size: 11px;
+	font-size: 14px;
 	font-weight: 600;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -91,12 +109,12 @@ a.button, #submit{
 
 section {
   @apply py-16;
-  h3 span {
+  h3 span, h2 span {
     background-color: white;
   }
   &:nth-of-type(odd) {
     @apply bg-mainColorLight;
-    h3 span {
+    h3 span, h2 span {
       background-color: var(--mainColorLight);
     }
   }
