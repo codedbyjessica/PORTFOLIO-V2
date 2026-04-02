@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../images/logo.svg';
+import Container from './Container.astro';
+import { NAV_ITEMS } from '@/data/nav';
+---
+
+<nav class="bg-mainColorLight relative z-20 py-4 sticky top-0 left-0 right-0">
+  <Container>
+    <div class="flex justify-between items-center">
+      <div class="w-[110px] md:w-auto">
+        <a href="#top"><Image src={logo} alt="Logo" width={150} /></a>
+      </div>
+      <div class="flex space-x-2 md:space-x-4 uppercase">
+        {
+          NAV_ITEMS.map((item, index) => (
+            <a
+              href={item.href}
+              data-nav-link
+              data-nav-index={index}
+              class:list={[
+                index === 0 && 'hidden',
+                index === 0 ? 'text-secondaryColorDark' : 'text-darkdarkgray',
+              ]}
+            >
+              {item.title}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</nav>
+
+<script>
+  function syncNavHighlight() {
+    const sections = document.querySelectorAll('main section');
+    const scrollTop = window.scrollY;
+    let active = 0;
+    sections.forEach((section, i) => {
+      const offset = i === 1 ? 200 : 100;
+      const sectionTop = (section as HTMLElement).offsetTop - offset;
+      if (scrollTop >= sectionTop) {
+        active = i + 1;
+      }
+    });
+    document.querySelectorAll('[data-nav-link]').forEach((el) => {
+      const idx = Number((el as HTMLElement).dataset.navIndex);
+      const on = idx === active;
+      el.classList.toggle('text-secondaryColorDark', on);
+      el.classList.toggle('text-darkdarkgray', !on);
+    });
+  }
+
+  syncNavHighlight();
+  window.addEventListener('scroll', syncNavHighlight, { passive: true });
+  document.addEventListener('astro:page-load', syncNavHighlight);
+</script>

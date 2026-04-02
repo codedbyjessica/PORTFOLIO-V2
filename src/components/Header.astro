@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import hero from '../images/hero.png';
+import Container from './Container.astro';
+---
+
+<header id="header-hero" class="relative text-black bg-white">
+  <div
+    id="parallax-hero-img"
+    class="fixed z-0 transition-opacity duration-300 opacity-100 w-[400px] h-[400px] lg:w-auto lg:h-[90%] max-h-[650px] bottom-0 right-1/2 translate-x-1/2 lg:translate-x-0 lg:right-[10%]"
+    style="transform: translateZ(0);"
+  >
+    <Image
+      src={hero}
+      alt="Hero Image"
+      width={800}
+      height={650}
+      class="w-full h-full object-contain max-h-[650px]"
+      loading="eager"
+    />
+  </div>
+
+  <div class="bg-gradient-to-br from-secondaryColorDark to-tertiaryColorDark opacity-75 relative z-10">
+    <Container>
+      <article class="min-h-[calc(100vh-53px-67px)] flex items-center justify-center lg:justify-start">
+        <div
+          class="mb-44 lg:mb-0 w-3/4 lg:w-[50%] xl:w-[60%] p-12 bg-white/80 tracking-wide text-center lg:text-left"
+        >
+          <p class="text-[12px] lg:text-lg">hello. my name is</p>
+          <h1 class="text-3xl leading-[100%] font-medium my-2 lg:my-1">Jessica Zhang</h1>
+          <p class="text-[12px] lg:text-lg">
+            and I'm a <span class="text-secondaryColorDark">Front-End Developer</span>
+          </p>
+          <a class="button mt-4 inline-block" href="#projects">see my work</a>
+        </div>
+      </article>
+    </Container>
+  </div>
+</header>
+
+<script>
+  function syncHeroImage() {
+    const header = document.getElementById('header-hero');
+    const imgWrap = document.getElementById('parallax-hero-img');
+    if (!header || !imgWrap) return;
+    const visible = header.getBoundingClientRect().bottom > 0;
+    imgWrap.classList.toggle('opacity-100', visible);
+    imgWrap.classList.toggle('opacity-0', !visible);
+  }
+  syncHeroImage();
+  window.addEventListener('scroll', syncHeroImage, { passive: true });
+  document.addEventListener('astro:page-load', syncHeroImage);
+</script>

@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Italic-VariableFont_wdth,wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --mainColorDark: #999999;
+  --mainColorLight: #f0f2f5;
+  --secondaryColorDark: #0068ad;
+  --secondaryColorLight: #80ccff;
+  --tertiaryColorDark: #2eb82e;
+  --darkdarkgray: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+*:hover {
+  transition: all 0.2s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: var(--darkdarkgray);
+  background-color: var(--darkdarkgray);
+}
+
+h1,
+h2,
+h3 {
+  @apply tracking-wider uppercase;
+}
+
+h2 {
+  @apply text-center border-b border-mainColorDark mb-10 pb-2 text-[1.2rem] w-full relative;
+}
+
+h2 span {
+  @apply absolute left-1/2 -translate-x-1/2 -top-1.5 px-3;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: -10px;
+}
+
+h3 span {
+  padding: 0 15px;
+}
+
+h4 {
+  font-size: 0.8rem;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--secondaryColorDark);
+}
+
+a:hover {
+  color: var(--tertiaryColorDark);
+}
+
+.button {
+  color: var(--secondaryColorDark);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--secondaryColorDark);
+  background-color: transparent;
+  padding: 8px 16px;
+}
+
+.button:hover {
+  color: #fff;
+  background-color: var(--tertiaryColorDark);
+  border: 1px solid var(--tertiaryColorDark);
+}
+
+section {
+  @apply py-16;
+}
+
+section h3 span,
+section h2 span {
+  background-color: white;
+}
+
+section:nth-of-type(odd) {
+  @apply bg-mainColorLight;
+}
+
+section:nth-of-type(odd) h3 span,
+section:nth-of-type(odd) h2 span {
+  background-color: var(--mainColorLight);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

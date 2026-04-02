@@ -1,0 +1,54 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+const formspreeBase = Astro.site ?? Astro.url;
+const formspreeThanks = new URL('/?sent=1#contact', formspreeBase).href;
+---
+
+<div class:list={['w-full', className]}>
+  <form
+    action="https://formspree.io/f/xeorkwgj"
+    method="POST"
+    class="space-y-4"
+  >
+    <input type="hidden" name="_next" value={formspreeThanks} />
+    <div>
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        required
+        class="w-full px-4 py-2 border border-mainColorDark focus:outline-none focus:ring-2 focus:ring-secondaryColorDark"
+      />
+    </div>
+    <div>
+      <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        required
+        class="w-full px-4 py-2 border border-mainColorDark focus:outline-none focus:ring-2 focus:ring-secondaryColorDark"
+      />
+    </div>
+    <div>
+      <textarea
+        name="message"
+        placeholder="Your Message"
+        required
+        rows={4}
+        class="w-full px-4 py-2 border border-mainColorDark focus:outline-none focus:ring-2 focus:ring-secondaryColorDark resize-none"
+      ></textarea>
+    </div>
+    <div class="flex justify-center">
+      <button type="submit" class="button"> Send Message </button>
+    </div>
+  </form>
+
+  {
+    Astro.url.searchParams.get('sent') === '1' && (
+      <p class="mt-4 text-center text-green-600">Message sent successfully!</p>
+    )
+  }
+</div>
