@@ -1,0 +1,162 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Container from '@/components/Container.astro';
+
+type StuffRow = {
+  site: string;
+  siteLabel?: string;
+  description: string;
+  stack: string;
+  created: string;
+  notes: string;
+};
+
+const stuff: { rows: StuffRow[] } = {
+  rows: [
+    {
+      site: 'https://dot.codedbyjessica.com',
+      siteLabel: "Dot",
+      description: 'The simplest period tracker',
+      stack: ['React', 'Amplify Data', 'Amplify Auth'],
+      created: '2026',
+      notes: 'I can\'t believe how difficult it is to find a free iphone period tracker app that doesn\'t have 500 ads or a crazy amount of features! I don\'t care to track my CM but I just wanna know when I can expect my anger management to spike',
+      status: 'complete',
+      statusNotes: 'complete',
+    },
+    {
+      site: 'https://wandarlingsguides.com/',
+      siteLabel: 'Wanderlings',
+      description: 'Customizable children\'s travel coloring guides.',
+      stack: ['Next.js'],
+      created: '2026',
+      notes: 'My side pet project, mostly art based, but I needed a glimpse of hope in case AI takes my coding job',
+      status: 'in progress',
+      statusNotes: 'in progress, actively working on it',
+    },
+    {
+      site: 'https://crumb.codedbyjessica.com/',
+      siteLabel: 'Crumb',
+      description: 'Meal planner, recipes list',
+      stack: ['Next.js', 'Supabase (deactivated)'],
+      created: '2025',
+      notes: 'My biggest pet peeve is the question "what are we having for dinner?". My second biggest pet peeve is when I have to scroll through a million paragraphs and ads to find the recipe I want',
+      status: 'halted',
+      statusNotes: 'halted - need to migrate db',
+    },
+    {
+      site: 'https://schedz.codedbyjessica.com/auth',
+      siteLabel: 'Schedz',
+      description: 'Extracurricular activity planner',
+      stack: ['Next.js', 'Supabase (deactivated)'],
+      created: '2025',
+      notes: 'Cus some dads don\'t know wtf is going on with their kids\' schedules',
+      status: 'halted',
+      statusNotes: 'halted - need to migrate db',
+    },
+    {
+      site: 'https://typeset.codedbyjessica.com',
+      siteLabel: 'AO3 Typesetter',
+      description: 'Takes a AO3 fanfic and makes it into print-ready PDF',
+      stack: ['Next.js'],
+      created: '2025',
+      notes: 'Because nerding out with my favourite fanfic isn\'t enough, I need to print it and make it into a book too',
+      status: 'complete',
+      statusNotes: 'complete',
+    }
+  ],
+};
+---
+
+<Layout
+  title="Stuff - Jessica Zhang"
+  description="A list of sites, what they do, and what powers them."
+>
+  <main class="relative z-10 bg-white">
+    <section id="stuff" class="min-h-[50vh]">
+      <Container>
+        <h2 class="md:mb-4 mb-12"><span>More stuff I created</span></h2>
+        <p class="text-center mb-10">out of passion or frustration</p>
+        <div class="overflow-x-auto md:bg-white md:border border-mainColorDark">
+          <div class="hidden md:grid md:grid-cols-12 border-b border-mainColorDark font-bold">
+            <div class="md:col-span-2 border-r border-mainColorDark p-2">Site</div>
+            <div class="md:col-span-2 border-r border-mainColorDark p-2">Description</div>
+            <div class="md:col-span-2 border-r border-mainColorDark p-2">Stack</div>
+            <div class="md:col-span-1 border-r border-mainColorDark p-2">Created</div>
+            <div class="md:col-span-3 border-r border-mainColorDark p-2">Notes</div>
+            <div class="md:col-span-2 p-2">Status</div>
+
+          </div>
+
+
+          {
+            stuff.rows.map((row) => (
+              <div class="grid md:grid-cols-12 md:border-b border-mainColorDark mb-4 md:mb-0 bg-white md:bg-transparent p-4 md:p-0 rounded-md md:rounded-none">
+                <div class="md:col-span-2 md:border-r border-mainColorDark text-center font-bold p-2"><a href={row.site} target="_blank" rel="noopener noreferrer">{row.siteLabel ?? row.site}</a></div>
+                <div class="md:col-span-2 md:border-r border-mainColorDark p-2"> <span class="block md:hidden font-bold">Description:</span> {row.description}</div>
+                <div class="md:col-span-2 md:border-r border-mainColorDark p-2"> <span class="block md:hidden font-bold">Stack:</span> {row.stack}</div>
+                <div class="md:col-span-1 md:border-r border-mainColorDark p-2"> <span class="block md:hidden font-bold">Created:</span> {row.created}</div>
+                <div class="md:col-span-3 md:border-r border-mainColorDark p-2"> <span class="block md:hidden font-bold">Notes:</span> {row.notes}</div>
+                <div class={`md:col-span-2 p-2 ${row.status === 'complete' ? 'bg-green-100' : row.status === 'in progress' ? 'bg-blue-100' : 'bg-yellow-100'}`}> <span class="block md:hidden font-bold">Status:</span> {row.statusNotes}</div>
+              </div>
+            ))
+          }
+        </div>
+      </Container>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .stuff-sheet {
+    width: 100%;
+    min-width: 44rem;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--darkdarkgray);
+  }
+
+  .stuff-sheet :is(th, td) {
+    border: 1px solid var(--mainColorDark);
+    padding: 0.65rem 0.85rem;
+    vertical-align: top;
+    background: transparent;
+  }
+
+  .stuff-sheet thead th {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .stuff-sheet .stuff-site {
+    text-align: center;
+    width: 11%;
+  }
+
+  .stuff-sheet .stuff-desc {
+    text-align: left;
+    width: 18%;
+  }
+
+  .stuff-sheet .stuff-stack {
+    text-align: left;
+    width: 18%;
+  }
+
+  .stuff-sheet .stuff-created {
+    text-align: left;
+    width: 6.5rem;
+    white-space: nowrap;
+  }
+
+  .stuff-sheet .stuff-notes {
+    text-align: left;
+  }
+
+  .stuff-sheet tbody td.stuff-site a {
+    font-weight: 500;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+</style>
