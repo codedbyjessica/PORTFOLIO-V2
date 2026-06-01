@@ -93,7 +93,7 @@ const stuff: { rows: StuffRow[] } = {
               <div class="grid md:grid-cols-12 md:border-b border-mainColorDark mb-4 md:mb-0 bg-white md:bg-transparent p-4 md:p-0 rounded-md md:rounded-none">
                 <div class="md:col-span-2 md:border-r border-mainColorDark text-center font-bold p-2"><a href={row.site} target="_blank" rel="noopener noreferrer">{row.siteLabel ?? row.site}</a></div>
                 <div class="md:col-span-2 md:border-r border-mainColorDark p-2"> <span class="block md:hidden font-bold">Description:</span> {row.description}</div>
-                <div class="md:col-span-2 md:border-r border-mainColorDark p-2"> <span class="block md:hidden font-bold">Stack:</span> {row.stack}</div>
+                <div class="md:col-span-2 md:border-r border-mainColorDark p-2"> <span class="block md:hidden font-bold">Stack:</span> {row.stack.join(', ')}</div>
                 <div class="md:col-span-1 md:border-r border-mainColorDark p-2"> <span class="block md:hidden font-bold">Created:</span> {row.created}</div>
                 <div class="md:col-span-3 md:border-r border-mainColorDark p-2"> <span class="block md:hidden font-bold">Notes:</span> {row.notes}</div>
                 <div class={`md:col-span-2 p-2 ${row.status === 'complete' ? 'bg-green-100' : row.status === 'in progress' ? 'bg-blue-100' : 'bg-yellow-100'}`}> <span class="block md:hidden font-bold">Status:</span> {row.statusNotes}</div>
